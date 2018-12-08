@@ -15,10 +15,10 @@
 
   <script>
 
-  var makeQuiz = function(){
+    var makeQuiz = function(){
       var navigator = document.getElementById("navigator");
-      var url = document.getElementById("url");
-      navigator.pushPage("quiz.html", {data: {url: url.value}});
+      var url = $("#select-url").val();
+      navigator.pushPage("quiz.html", {data: {url: url}});
     };
 
     document.addEventListener("init", function(event){
@@ -34,17 +34,32 @@
         })
         .done(function(data){
 
+          // 対象コンテンツの取得
           var html = $.parseHTML(data)
-
           var content = $(html).text();
+          cotent = content.replace(/\r?\n/g, ""); //改行を除く
+          content = content.replace(/\s+/g, ""); //スペースを除く
 
-          var reg_jinkou = new RegExp("[0-9,]+人")
+          // 人口
+          var reg_jinkou = new RegExp("人口([0-9,.]+)人")
           var result_jinkou = content.match(reg_jinkou)
           if(result_jinkou){
-            alert(result_jinkou)
+            $("#answer-jinkou").append(result_jinkou[1] + "人");
           }
 
-          $("#content").append(content);
+          // 面積
+          var reg_menseki = new RegExp("面積([0-9,.]+)km")
+          var result_menseki = content.match(reg_menseki)
+          if(result_menseki){
+            $("#answer-menseki").append(result_menseki[1] + "km<sup>2</sup>");
+          }
+
+          // 人口密度
+          var reg_mitsudo = new RegExp("人口密度([0-9,.]+)人/km")
+          var result_mitsudo = content.match(reg_mitsudo)
+          if(result_mitsudo){
+            $("#answer-mitsudo").append(result_mitsudo[1] + "人/km<sup>2</sup>");
+          }
 
         })
 
@@ -67,11 +82,16 @@
 
       <div style="text-align: center; margin-top: 30px;">
         <p>
-          <ons-input id="url" modifier="underbar" value="https://ja.wikipedia.org/wiki/日進市" float></ons-input>
+          <ons-select id="select-url" style="width:90%">
+            <option value="https://ja.wikipedia.org/wiki/日進市">日進市 Wikipedia</option>
+            <option value="https://ja.wikipedia.org/wiki/豊田市">豊田市 Wikipedia</option>
+            <option value="https://ja.wikipedia.org/wiki/名古屋市">名古屋市 Wikipedia</option>
+          </ons-select>
         </p>
         <p style="margin-top: 30px;">
           <ons-button onclick="makeQuiz()">クイズ生成</ons-button>
         </p>
+
       </div>
     </ons-page>
   </ons-template>
