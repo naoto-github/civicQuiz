@@ -38,33 +38,102 @@
           var content = $(html).text();
           cotent = content.replace(/\r?\n/g, ""); //改行を除く
           content = content.replace(/\s+/g, ""); //スペースを除く
+          content = content.replace(/,/g, ""); //カンマを除く
 
           // 市町村
           $("#city").append(city_name)
 
+          var reg;
+          var result;
+          var answer;
+          var rand;
+
           // 人口
-          var reg_jinkou = new RegExp("人口([0-9,.]+)人")
-          var result_jinkou = content.match(reg_jinkou)
-          if(result_jinkou){
-            $("#answer-jinkou").append(result_jinkou[1] + "人");
-          }
+          reg = new RegExp("人口([0-9,.]+)人")
+          result = content.match(reg)
+          answer = Math.floor(Number(result[1]));
+          rand = Math.floor(Math.random() * 4)
+          $(".jinkou").each(function(i, element){
+            if(rand == i){
+              $(this).text(answer);
+              $(this).prev().attr("value", "true");
+            }
+            else{
+              $(this).text(Math.floor(answer * Math.random()));
+              $(this).prev().attr("value", "false");
+            }
+            $(this).append("人")
+          })
 
           // 面積
-          var reg_menseki = new RegExp("面積([0-9,.]+)km")
-          var result_menseki = content.match(reg_menseki)
-          if(result_menseki){
-            $("#answer-menseki").append(result_menseki[1] + "km<sup>2</sup>");
-          }
+          reg = new RegExp("面積([0-9,.]+)km")
+          result = content.match(reg)
+          answer = Math.floor(Number(result[1]));
+          rand = Math.floor(Math.random() * 4)
+          $(".menseki").each(function(i, element){
+            if(rand == i){
+              $(this).text(answer);
+              $(this).prev().attr("value", "true");
+            }
+            else{
+              $(this).text(Math.floor(answer * Math.random()));
+              $(this).prev().attr("value", "false");
+            }
+            $(this).append("km<sup>2</sup>")
+          })
 
           // 人口密度
-          var reg_mitsudo = new RegExp("人口密度([0-9,.]+)人/km")
-          var result_mitsudo = content.match(reg_mitsudo)
-          if(result_mitsudo){
-            $("#answer-mitsudo").append(result_mitsudo[1] + "人/km<sup>2</sup>");
-          }
+          reg = new RegExp("人口密度([0-9,.]+)人/km")
+          result = content.match(reg)
+          answer = Math.floor(Number(result[1]));
+          rand = Math.floor(Math.random() * 4)
+          $(".mitsudo").each(function(i, element){
+            if(rand == i){
+              $(this).text(answer);
+              $(this).prev().attr("value", "true");
+            }
+            else{
+              $(this).text(Math.floor(answer * Math.random()));
+              $(this).prev().attr("value", "false");
+            }
+            $(this).append("人/km<sup>2</sup>")
+          })
 
         })
 
+        $("#answer").click(function(){
+          if($("[name=jinkou]:checked").attr("value") == "true"){
+            $("#answer-jinkou").css("color", "yellow");
+            $("#answer-jinkou").text("正解");
+          }
+          else{
+            $("#answer-jinkou").css("color", "gray");
+            $("#answer-jinkou").text("不正解");
+          }
+
+          if($("[name=menseki]:checked").attr("value") == "true"){
+            $("#answer-menseki").css("color", "yellow");
+            $("#answer-menseki").text("正解");
+          }
+          else{
+            $("#answer-menseki").css("color", "gray");
+            $("#answer-menseki").text("不正解");
+          }
+
+          if($("[name=mitsudo]:checked").attr("value") == "true"){
+            $("#answer-mitsudo").css("color", "yellow");
+            $("#answer-mitsudo").text("正解");
+          }
+          else{
+            $("#answer-mitsudo").css("color", "gray");
+            $("#answer-mitsudo").text("不正解");
+          }          
+
+
+          $("#answer-jinkou").css("visibility", "visible");
+          $("#answer-menseki").css("visibility", "visible");
+          $("#answer-mitsudo").css("visibility", "visible");
+        });
       }
     });
 
