@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="css/onsen-css-components.min.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+
+  var makeQuiz = function(){
+      var navigator = document.getElementById("navigator");
+      var url = document.getElementById("url");
+      navigator.pushPage("quiz.html", {data: {url: url.value}});
+    };
+
+    document.addEventListener("init", function(event){
+      var page = event.target;
+
+      if(page.id == "quiz-page"){
+        var url = page.data.url;
+
+        $.ajax({
+          url: url,
+          type: "GET",
+          dataType: "html"
+        })
+        .done(function(data){
+
+          var html = $.parseHTML(data)
+
+          var content = $(html).text();
+
+          var reg_jinkou = new RegExp("[0-9,]+人")
+          var result_jinkou = content.match(reg_jinkou)
+          if(result_jinkou){
+            alert(result_jinkou)
+          }
+
+          $("#content").append(content);
+
+        })
+
+      }
+    });
+
+    ons.ready(function() {
+    });
+
+  </script>
+</head>
+<body>
+  <ons-navigator id="navigator" page="top.html"></ons-navigator>
+
+  <ons-template id="top.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="center">Civic Wikipedia Quiz</div>
+      </ons-toolbar>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <p>
+          <ons-input id="url" modifier="underbar" value="https://ja.wikipedia.org/wiki/日進市" float></ons-input>
+        </p>
+        <p style="margin-top: 30px;">
+          <ons-button onclick="makeQuiz()">クイズ生成</ons-button>
+        </p>
+      </div>
+    </ons-page>
+  </ons-template>
+</body>
+</html>
