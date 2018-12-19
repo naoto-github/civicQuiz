@@ -24,8 +24,8 @@
 
     ons.ready(function() {
 
-      // 緯度経度の設定（名古屋駅）
-      var latlng = new L.latLng(35.170915, 136.881537);
+      // 緯度経度の設定（日進市）
+      var latlng = new L.latLng(35.139751, 137.046702);
 
       // 倍率の設定
       var zoom = 11;
@@ -38,6 +38,17 @@
           'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
           { attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' }
       ).addTo(map);
+
+      // インフォメーションの追加
+      var info = L.control();
+
+      info.onAdd = function(map){
+        this._div = L.DomUtil.create("div", "info");
+        this._div.innerHTML = "<p style='background:green;color:white;padding:5px'>クイズを自動生成する地域を<br>タップしてください</p>";
+        return this._div;
+      };
+      
+      info.addTo(map);
 
       //ポリゴン・マーカー
       function myPolygon(feature, latlng){
