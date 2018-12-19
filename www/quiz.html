@@ -2,7 +2,7 @@
 
   <ons-toolbar>
     <div class="left"><ons-back-button>Back</ons-back-button></div>
-    <div class="center">Civic Quiz</div>
+    <div class="center">Civic Wiki Quiz</div>
   </ons-toolbar>
 
   <div style="text-align: center; margin-top: 30px;">
@@ -11,10 +11,10 @@
     </h1>
 
     <p style="margin-top: 30px;">
-      <p>人口は？</p>
+      <h3>人口は？</h3>
       <ons-list>
         <ons-list-item tappable>
-          <ons-radio name="jinkou" input-id="jinkou-1" value="false" checked></ons-radio>
+          <ons-radio name="jinkou" input-id="jinkou-1" value="false"></ons-radio>
           <label style="margin-left:20px" class="jinkou" for="jinkou-1">1</label>
         </ons-list-item>
         <ons-list-item tappable>
@@ -34,10 +34,10 @@
     </p>
 
     <p style="margin-top: 30px;">
-      <p>面積は？</p>
+      <h3>面積は？</h3>
       <ons-list>
         <ons-list-item tappable>
-          <ons-radio name="menseki" input-id="menseki-1" value="false" checked></ons-radio>
+          <ons-radio name="menseki" input-id="menseki-1" value="false"></ons-radio>
           <label style="margin-left:20px" class="menseki" for="menseki-1">1</label>
         </ons-list-item>
         <ons-list-item tappable>
@@ -57,10 +57,10 @@
     </p>
 
     <p style="margin-top: 30px;">
-      <p>人口密度は？</p>
+      <h3>人口密度は？</h3>
       <ons-list>
         <ons-list-item tappable>
-          <ons-radio name="mitsudo" input-id="mitsudo-1" value="false" checked></ons-radio>
+          <ons-radio name="mitsudo" input-id="mitsudo-1" value="false"></ons-radio>
           <label style="margin-left:20px" class="mitsudo" for="mitsudo-1">1</label>
         </ons-list-item>
         <ons-list-item tappable>
@@ -81,7 +81,7 @@
   </div>
 
   <div style="padding:30px">
-    <ons-button id="answer" modifier="large">回答</ons-button>
+    <ons-button id="clear" modifier="large" style="visibility:hidden">Great!</ons-button>
   </div>
 
 </ons-page>
