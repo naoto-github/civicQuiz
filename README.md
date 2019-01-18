@@ -18,17 +18,15 @@ packageフォルダにある**CivicWikiQuiz.apk**を，
 
 ### 使用方法
 
-1. 実行するとトップ画面が表示されます．**スタート**をタップしてください．
+1. 実行するとオープンストリートマップが表示されます．クイズを生成したい地区をタップします．
 
 <a href="https://gyazo.com/fbbea602f319434cc4cd2ed6cff0e0b2"><img width="300px" src="https://i.gyazo.com/fbbea602f319434cc4cd2ed6cff0e0b2.jpg" alt="Image from Gyazo" width="461"/></a>
 
-2. メイン画面です．日進市のオープンストリートマップが表示されます．画面下部に操作用のインターフェイスがあります．
-バス停を選択すると，選択したバス停が地図でフォーカスされ，時刻表がポップアップで表示されます．
-また，スライダーを左右に動かすと，指定時間帯のバスの動きが可視化されます．
-このとき，指定時刻から３分以内に到着するバス停は黄色，指定時刻にバスが到着するバス停は緑色，過去３分にバスが通り過ぎたバス停は赤色で表示されます．
-スライダーの右にある**プレイ**をタップすると，スライダーは自動で動きます．
+2. タップした地区のWikipediaからスクレイピングして，クイズが自動生成されます．このバージョンでは，人口や面積などの設問を生成します．
 
 <a href="https://gyazo.com/870f85e1c5c1a2df06e6af4d05ca4e26"><img width="300px" src="https://i.gyazo.com/870f85e1c5c1a2df06e6af4d05ca4e26.jpg" alt="Image from Gyazo" width="461"/></a>
+
+3. オープンストリートマップの画面に戻ると，全問正解した地区が青色で表示されます．
 
 <a href="https://gyazo.com/c2e80e23bf3202c8034feacc1ef407c7"><img width="300px" src="https://i.gyazo.com/c2e80e23bf3202c8034feacc1ef407c7.jpg" alt="Image from Gyazo" width="461"/></a>
 
